@@ -1,0 +1,46 @@
+{
+    "members": [
+        {
+            "id": 1,
+            "name": "Alice",
+            "age": 24,
+            "rating": 4,
+            "lastActivities": ["hiking", "biking", "running"]
+        },
+        {
+            "id": 2,
+            "name": "Bob",
+            "age": 30,
+            "rating": 3,
+            "lastActivities": ["bowling", "hiking"]
+        },
+        {
+            "id": 3,
+            "name": "Charlie",
+            "age": 20,
+            "rating": 4,
+            "lastActivities": ["biking", "camping"]
+        },
+        {
+            "id": 4,
+            "name": "David",
+            "age": 25,
+            "rating": 3,
+            "lastActivities": ["biking", "camping"]
+        },
+        {
+            "id": 5,
+            "name": "Eric",
+            "age": 19,
+            "rating": 5,
+            "lastActivities": ["rockclimbing", "swimming"]
+        },
+        {
+            "id": 6,
+            "name": "Fred",
+            "age": 18,
+            "rating": 2,
+            "lastActivities": ["hiking"]
+        }
+    ]
+}
