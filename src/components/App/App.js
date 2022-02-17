@@ -38,27 +38,29 @@ const App = () => {
 
   // set activity count and member on api updates
   useEffect(() => {
+    const allActivities = [];
     setActivityCount(countActivity(apiData));
+    apiData.forEach((member) => {
+      member.lastActivities.forEach((activity) => {
+        if (!allActivities.includes(activity)) allActivities.push(activity);
+      })
+    });
+    setFilterActitivty(allActivities);
     setMemberData(apiData);
   }, [apiData]);
 
   // update filtered member data on api or filter updates
   useEffect(() => {
-    if (filterActitivty.length) {
-      // only display filtered activities
-      setMemberData(
-        apiData.filter((member) => {
-          return (
-            filterActitivty.some(
-              (activity) => member.lastActivities.includes(activity))
-            && member.name.includes(filterName)
-          )
-        }
-      ));
-    } else {
-      // reset to initial data
-      setMemberData(apiData);
-    }
+    // only display filtered activities
+    setMemberData(
+      apiData.filter((member) => {
+        return (
+          filterActitivty.some(
+            (activity) => member.lastActivities.includes(activity))
+          && member.name.toLowerCase().includes(filterName.toLowerCase())
+        )
+      }
+    ));
   }, [apiData, filterActitivty, filterName]);
 
   // count activity occurrences and return a map
@@ -117,7 +119,7 @@ const App = () => {
           </Form.Group>
         </Row>
         <Row className="mb-3">
-          <ToggleButtonGroup type="checkbox" defaultValue={[]} onChange={(value) => setFilterActitivty(value)}>
+          <ToggleButtonGroup type="checkbox" defaultValue={filterActitivty} onChange={(value) => setFilterActitivty(value)}>
             {[...activityCount].map((kv, i) => (
               <ToggleButton variant="primary" key={i} id={`activity-${kv[0]}`} value={kv[0]}>
                 {kv[0]} <Badge bg="secondary">{kv[1]}</Badge>
